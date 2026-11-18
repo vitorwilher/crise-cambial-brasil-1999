@@ -1,0 +1,10 @@
+.venv/
+.env
+dados/*
+!dados/.gitkeep
+saidas/*
+!saidas/.gitkeep
+__pycache__/
+.DS_Store
+referencias/**/*.pdf
+referencias/*.pdf
