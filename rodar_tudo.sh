@@ -10,3 +10,4 @@ $PY src/20_divida_prazo_composicao.py  # bloco 2: prazo e indexação da dívida
 $PY src/30_markov_juros.py         # blocos 3-4: regimes nos juros (2ª geração)
 $PY src/31_markov_robustez.py      # robustez e bootstrap da LR (~5 min)
 $PY src/32_pressao_cambial.py      # bloco 3: índice de pressão cambial
+quarto render slides/apresentacao/slides.qmd

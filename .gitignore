@@ -8,3 +8,6 @@ __pycache__/
 .DS_Store
 referencias/**/*.pdf
 referencias/*.pdf
+slides/**/*.html
+slides/**/*_files/
+.quarto/

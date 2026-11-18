@@ -14,3 +14,8 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 Os dados vêm das APIs públicas do BCB (SGS), FRED e Ipeadata; os gráficos e tabelas
 vão para `saidas/`. Fontes, códigos das séries e o mapa roteiro → scripts estão em
 [CLAUDE.md](CLAUDE.md).
+
+## Slides
+
+`slides/apresentacao/slides.qmd` (Quarto revealjs, tema da Análise Macro). Depois de
+rodar `./rodar_tudo.sh`: `quarto render slides/apresentacao/slides.qmd`.

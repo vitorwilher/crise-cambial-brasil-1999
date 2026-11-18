@@ -1,0 +1,338 @@
+/*-- scss:defaults --*/
+// ANÁLISE MACRO — tema de slides.
+// Inspirado na arte "Síntese das Cartas das Gestoras"
+// (~/Dropbox/4. Portfolio/Cartas_de_Gestoras/assets/linkedin/sintese-cartas-linkedin.html)
+//
+// Elementos que definem o visual:
+//   Space Grotesk 400 nos títulos (leve, não pesado) · Inter no corpo
+//   JetBrains Mono nos rótulos técnicos (eyebrow, badge, crédito)
+//   Fundo radial quase-preto azulado · azul #6fb6ee no realce · ciano #03cdff no acento
+//   Quadrados rotacionados 10° ao fundo · ponto de glow ciano
+
+$blue:       #6fb6ee;   // azul do realce (do .grad)
+$cyan:       #03cdff;   // ciano de acento
+$ink:        #0b0d13;   // base do fundo
+$paper:      #c7ccd1;   // corpo de texto (do .deck)
+$white:      #ffffff;
+$muted:      rgba(191,227,245,.62);
+$red:        #ff6b6b;
+$green:      #00dc59;
+
+$body-bg:    $ink;
+$body-color: $paper;
+$link-color: $cyan;
+
+$presentation-heading-color: $white;
+$presentation-heading-font-weight: 400;
+$presentation-font-size-root: 30px;
+$code-block-font-size: 0.5em;
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+.reveal {
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(135% 100% at 50% -8%, #0f1420 0%, #0b0d13 44%, #070810 100%);
+}
+
+// Quadrados rotacionados do fundo — a assinatura visual da arte
+.reveal-viewport::before,
+.reveal-viewport::after {
+  content: '';
+  position: fixed;
+  border-radius: 24px;
+  transform: rotate(10deg);
+  pointer-events: none;
+  z-index: 0;
+}
+.reveal-viewport::before {
+  width: 126px; height: 126px; left: -36px; top: 22%;
+  border: 1px solid rgba(120,160,220,.14);
+  background: linear-gradient(150deg, rgba(30,44,72,.55), rgba(14,20,34,.25));
+}
+.reveal-viewport::after {
+  width: 78px; height: 78px; right: 44px; top: 30%;
+  border: 2px solid rgba(3,205,255,.28);
+}
+
+// Títulos: Space Grotesk LEVE, com tracking negativo
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: 1.06;
+  text-transform: none;
+}
+.reveal h1 { font-size: 1.75em; color: $white; }
+.reveal h2 {
+  font-size: 1.32em;
+  color: $white;
+  margin-bottom: .55em;
+}
+// o realce azul dentro do título — use **negrito** no markdown
+.reveal h2 strong, .reveal h1 strong { color: $blue; font-weight: 400; }
+
+.reveal p { line-height: 1.34; }
+
+// Logo
+.reveal .slide-logo {
+  height: 92px !important;
+  max-height: 92px !important;
+  bottom: 22px !important;
+  right: 40px !important;
+  opacity: .8;
+  filter: brightness(0) invert(1);
+}
+
+// Número do slide: pílula em JetBrains Mono, como o .eyebrow da arte
+.reveal .slide-number {
+  top: 30px; bottom: auto; right: 40px;
+  background: rgba(16,20,32,.55) !important;
+  color: $blue !important;
+  padding: 7px 18px;
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .38em;
+  font-weight: 500;
+  letter-spacing: .04em;
+  border: 1px solid rgba(90,115,150,.2);
+}
+
+// Capa — tipografia (posicionamento fica no bloco CAPA, no fim do arquivo)
+.reveal #title-slide .title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  letter-spacing: -.025em;
+  color: $white;
+}
+.reveal #title-slide .subtitle {
+  color: $blue;
+  font-size: .62em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+.reveal #title-slide .author {
+  color: $muted;
+  font-size: .5em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+// Tabelas
+.reveal table { font-size: .6em; border-collapse: separate; border-spacing: 0; }
+.reveal table thead th {
+  background: rgba(16,20,32,.55);
+  color: $blue;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: .88em;
+  letter-spacing: .03em;
+  border-bottom: 1px solid rgba(90,115,150,.25) !important;
+  padding: .55em .75em;
+}
+.reveal table td {
+  border-color: rgba(120,160,220,.10) !important;
+  padding: .45em .75em;
+  color: $paper;
+}
+.reveal table tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+.reveal table strong { color: $white; font-weight: 600; }
+
+// Código
+.reveal pre {
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+  border: 1px solid rgba(90,115,150,.2);
+  border-radius: 14px;
+  background: rgba(12,15,24,.86);
+}
+.reveal code { font-family: 'JetBrains Mono', monospace; }
+.reveal p code, .reveal li code, .reveal td code { color: $cyan; font-size: .92em; }
+
+// Caixa de PROMPT — no formato do .badge da arte
+.reveal .prompt {
+  background: linear-gradient(180deg, rgba(18,21,31,.92), rgba(12,15,24,.86));
+  border: 1px solid rgba(3,205,255,.28);
+  border-radius: 14px;
+  padding: .9rem 1.2rem;
+  margin: .8rem auto;
+  max-width: 90%;
+  text-align: left;
+  font-size: .8em;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
+.reveal .prompt::before {
+  content: "///PROMPT";
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55em;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: $cyan;
+  margin-bottom: .5rem;
+}
+
+// Caixa de ARMADILHA
+.reveal .armadilha {
+  background: linear-gradient(180deg, rgba(31,18,21,.92), rgba(24,12,15,.86));
+  border: 1px solid rgba(255,107,107,.30);
+  border-radius: 14px;
+  padding: .9rem 1.2rem;
+  margin: .8rem auto;
+  max-width: 90%;
+  text-align: left;
+  font-size: .8em;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
+.reveal .armadilha::before {
+  content: "///ARMADILHA";
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55em;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: $red;
+  margin-bottom: .5rem;
+}
+
+// Frase de destaque com o ponto de glow ciano (do .brand .meta da arte)
+.reveal .destaque {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: $white;
+  font-size: 1.05em;
+}
+.reveal .destaque::before {
+  content: '';
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: $cyan;
+  box-shadow: 0 0 12px rgba(3,205,255,.85);
+  flex-shrink: 0;
+}
+
+.reveal .caption-fonte {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .38em;
+  color: $muted;
+  margin-top: .8rem;
+}
+
+// Divider de seção
+.reveal .divider h1 {
+  font-size: 2.1em;
+}
+
+.reveal .denso { font-size: .84em; }
+.reveal .denso table { font-size: .54em; }
+
+.reveal ul li { margin-bottom: .32em; }
+.reveal strong { color: $white; font-weight: 600; }
+.reveal em { color: $blue; font-style: normal; }
+.reveal .columns { align-items: start; }
+.reveal section { z-index: 1; }
+
+// ── CAPA ──────────────────────────────────────────────────────────────────
+// A arte de referência NÃO tem logo grande no centro: ela fica pequena no topo
+// esquerdo. Logo de fundo centralizada brigava com o título — o Vitor vetou.
+// Aqui a logo do canto (opção `logo:` do reveal) já cumpre o papel da marca.
+
+.reveal #title-slide {
+  text-align: left;
+  padding-left: 6%;
+  padding-right: 10%;
+}
+// o reveal já centraliza o bloco verticalmente — NÃO usar height:100% + flex aqui,
+// senão o conteúdo cola no topo (aconteceu e o print acusou).
+.reveal #title-slide * { text-align: left; }
+.reveal #title-slide .title {
+  font-size: 2.05em;
+  max-width: 15em;
+  margin-bottom: .1em;
+}
+.reveal #title-slide .subtitle { margin-top: .5em; }
+.reveal #title-slide .author {
+  margin: 2.4em 0 0 0;   // o reveal aplica margem lateral própria — zerar aqui
+  padding: 0;
+  width: 100%;
+}
+.reveal #title-slide .quarto-title-authors,
+.reveal #title-slide .quarto-title-author,
+.reveal #title-slide .quarto-title-author-name {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+// filete ciano curto acima do título — assinatura da arte
+.reveal #title-slide::before {
+  content: '';
+  display: block;
+  width: 74px;
+  height: 3px;
+  background: #03cdff;
+  box-shadow: 0 0 14px rgba(3,205,255,.7);
+  margin-bottom: 1.1em;
+}
+
+// Afiliação do autor: menor e mais discreta que o nome
+.reveal #title-slide .quarto-title-affiliation {
+  color: rgba(191,227,245,.48);
+  font-size: .78em;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .01em;
+  margin-top: .25em;
+}
+
+// ── SLIDE DE FECHO ────────────────────────────────────────────────────────
+// Encerra todo deck: site + o mote da casa. Sem título, sem número.
+
+.reveal .fecho {
+  text-align: center;
+}
+.reveal .fecho .site {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72em;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: #6fb6ee;
+  margin-bottom: 1.5em;
+}
+.reveal .fecho .mote {
+  min-height: 1.6em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 1.45em;
+  letter-spacing: -.02em;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+// cursor piscante da máquina de escrever (o ponto de glow saiu — Vitor, 18/08)
+.reveal .fecho .mote::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1.05em;
+  background: #03cdff;
+  box-shadow: 0 0 12px rgba(3,205,255,.8);
+  margin-left: 6px;
+  vertical-align: text-bottom;
+  animation: piscaCursor 1s step-end infinite;
+}
+// some quando a frase termina de ser escrita
+.reveal .fecho .mote.pronto::after { animation: none; opacity: 0; }
+
+@keyframes piscaCursor {
+  0%, 50%  { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// Gráficos do trabalho (fundo claro) sobre o fundo escuro do deck
+.reveal .fig { text-align: center; margin-top: .2em; }
+.reveal .fig img { max-height: 545px; border-radius: 10px; box-shadow: 0 0 0 1px rgba(111,182,238,.25); }
+.reveal .fig-alta img { max-height: 590px; }
+.reveal .fonte { font-family: 'JetBrains Mono', monospace; font-size: .42em; color: #8894a5; margin-top: .3em; }

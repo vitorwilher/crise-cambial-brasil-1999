@@ -1,0 +1,223 @@
+---
+title: "Brasil, 1999: por que a banda cambial caiu?"
+subtitle: "Dívida Soberana e Câmbio · FGV EPGE · Trabalho final"
+author:
+  - name: "Vítor Wilher"
+    affiliation: "Candidato ao PhD em Economia pela EPGE/FGV"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../theme-am.scss]
+    logo: ../assets/logo-am.png
+    embed-resources: true
+    slide-number: c/t
+    width: 1280
+    height: 720
+    incremental: true
+    code-overflow: wrap
+    transition: slide
+    include-after-body: ../maquina-de-escrever.html
+execute:
+  echo: false
+  eval: false
+---
+
+# A pergunta {.divider}
+
+## O que o trabalho responde
+
+Por que o regime de bandas entrou em colapso em janeiro de 1999, e qual foi o papel
+das **reservas**, dos **juros** e da **política fiscal**?
+
+. . .
+
+::: {.destaque}
+A âncora cambial pedia um fiscal que não veio. Com 69% da dívida na Selic, cada
+defesa com juros piorava o fiscal; as reservas compraram tempo até acabar o fôlego.
+:::
+
+## O roteiro, bloco a bloco
+
+| Bloco | Evidência |
+|---|---|
+| 1. Contexto pré-crise | trajetória fiscal, dívida e composição, 1995–1998 |
+| 2. Vulnerabilidades | hiato fiscal, prazo e indexação da dívida, custo dos juros |
+| 3. Dinâmica da crise | Markov-switching nos juros, índice de pressão cambial |
+| 4. Interpretação teórica | 1ª geração (fiscal) × 2ª geração (custo da defesa) |
+| 5. Resposta de política | FMI, flutuação, metas *(em construção)* |
+| 6. Contrafactual | simulação da dívida *(em construção)* |
+
+# 1. Contexto pré-crise {.divider}
+
+## A âncora: uma banda que deslizava devagar
+
+- Bandas desde março de 1995, com minibandas dentro da banda larga
+- A PTAX deslizou à mediana de **7,4% ao ano** entre jul/1995 e dez/1998
+- O juro real alto atraía capital e segurava a banda
+- A pergunta é se o resto da política acompanhava a âncora
+
+. . .
+
+::: {.fonte}
+Deslize: depreciação anualizada da PTAX em 13 semanas (BCB/SGS 1). Cálculo próprio.
+:::
+
+## A política fiscal não acompanhou
+
+::: {.fig .fig-alta}
+![](../../saidas/fiscal_painel.png)
+:::
+
+## Os números da deterioração (Gov. Federal + BC)
+
+| Dez | Dívida líq./PIB | Primário efetivo | Juros | Primário necessário |
+|---|---|---|---|---|
+| 1995 | 12,2 | 0,5 | 2,5 | −2,5 |
+| 1996 | 14,6 | 0,3 | 2,6 | 0,6 |
+| 1997 | 17,2 | −0,2 | 2,0 | 0,5 |
+| 1998 | **22,9** | 0,5 | **5,0** | **4,5** |
+| 1999 | 26,8 | **2,1** | 4,5 | 1,2 |
+
+. . .
+
+::: {.destaque}
+Em 1998 faltaram **4 p.p. do PIB** de primário para estabilizar a dívida federal.
+:::
+
+::: {.fonte}
+% do PIB, 12 meses. Primário necessário = juros − d₋₁·γ/(1+γ). BCB/SGS 4468, 5750, 5783, 4380, 190.
+:::
+
+# 2. Vulnerabilidades {.divider}
+
+## A dívida trocou prazo e prefixação por Selic e câmbio
+
+::: {.fig}
+![](../../saidas/prazo_composicao_divida.png)
+:::
+
+## O que a composição revela
+
+| Dez | Prefixado | Over/Selic | Câmbio |
+|---|---|---|---|
+| 1996 | 61,0% | 18,6% | 9,4% |
+| 1997 | 40,9% | 34,8% | 15,4% |
+| 1998 | **3,5%** | **69,1%** | **21,0%** |
+
+- Prazo médio das LTN emitidas: 5,0 (set/97) → 2,7 (fev/98) → 2,2 (ago/98)
+- Em junho de 1998 o Tesouro abandona a emissão de LTN
+
+::: {.fonte}
+BCB, Relatórios Anuais 1997–1999 (Quadros 3.5, 4.5, 4.8); SGS 10613; IPEA TD 700.
+:::
+
+## O custo de defender a banda com juros
+
+- Taxa implícita da dívida líquida federal contra a Selic, mensal
+- Sensibilidade ao juro: **0,23** em 1995–97 e **0,45** em 1998
+- A alta de ago→out/98 (+22,4 p.p. de Selic) custou cerca de **2,0% do PIB ao ano**
+
+. . .
+
+::: {.destaque}
+Indexar a dívida à Selic transformou a defesa do câmbio num problema fiscal.
+:::
+
+::: {.fonte}
+MQO com erros HAC; juros GF+BC (SGS 4606) / dívida do mês anterior (SGS 4468); Selic SGS 1178.
+:::
+
+## A política fiscal reagia à dívida?
+
+| Função de reação (Bohn) | 1995–1998 | 1999–2006 |
+|---|---|---|
+| ρ: primário sobre dívida defasada | 0,13 (p = 0,38) | 0,08 (p < 0,01) |
+| Primário médio (% PIB) | 0,6 | 2,1 |
+
+. . .
+
+::: {.armadilha}
+Antes de 1999 há só 4 anos de dados independentes: o teste não tem poder para
+rejeitar uma quebra. A evidência fiscal forte é o hiato de primário, não o ρ.
+:::
+
+# 3. Dinâmica da crise {.divider}
+
+## Os juros alternaram entre calma e ataque
+
+::: {.fig}
+![](../../saidas/markov_probabilidades.png)
+:::
+
+## Dois regimes, e não um
+
+- Prêmio nos juros: **8,2 p.p.** no regime calmo × **28,2 p.p.** no de ataque
+- Volatilidade 4 vezes maior no ataque
+- LR = 129; valor crítico por bootstrap (95%) = 12,6; **p = 0,002**
+- Ataques: Ásia (out–dez/97) e Rússia (set–nov/98)
+- Robusto a amostra, janela do deslize e EMBI como motor da troca
+
+. . .
+
+::: {.destaque}
+Em dez/98 e jan/99 o modelo está no regime **calmo**: o ataque final não passou pelos juros.
+:::
+
+## Por onde o ataque passou
+
+::: {.fig}
+![](../../saidas/emp_pressao_cambial.png)
+:::
+
+## Depois do FMI, os juros caem e as reservas sangram
+
+- Selic média: 19,2% (ago/98) → 41,6% (out/98) → 31,3% (dez/98)
+- Reservas: US$ 70,9 bi (jun/98) → 44,6 bi (dez/98) → 36,1 bi (jan/99)
+- Set/98: pressão cambial acima de média + 3 desvios
+- Semanas de nov–dez/98: contribuição dos juros **negativa**
+
+::: {.fonte}
+BCB/SGS 1178, 3546, 13621; índice de pressão de Eichengreen, Rose e Wyplosz.
+:::
+
+# 4. Interpretação teórica {.divider}
+
+## Dois modelos, uma crise
+
+| | 1ª geração (fiscal) | 2ª geração (custo da defesa) |
+|---|---|---|
+| Mecanismo | fundamento fiscal inconsistente com o câmbio | defender sai caro e o governo desiste |
+| Evidência | hiato de 4 p.p. do PIB em 1998; dívida 12% → 23% do PIB | 2 regimes nos juros; custo de 2% do PIB da alta de 98 |
+| Limite | o déficit era financiado com dívida, não com moeda | não diz quando o ataque vem |
+
+. . .
+
+::: {.destaque}
+Os dois se reforçam: a dívida na Selic liga o custo da defesa ao fundamento fiscal.
+:::
+
+## O que a evidência não cobre
+
+- A Selic era fixada pelo BC: mede a **defesa**, não só a expectativa do mercado
+- Fiscal mensal só existe para Gov. Federal + BC antes de 2001
+- Dívida/PIB com o PIB revisado do IBGE: nível abaixo do publicado em 1998
+- O salto de reservas de 18/12/98 ainda precisa de fonte documental
+
+# 5–6. Resposta e contrafactual {.divider}
+
+## Em construção
+
+- FMI: datas, valores e metas de primário do acordo de nov/98
+- Flutuação e metas de inflação: o que mudou no fiscal depois de 1999
+- Contrafactual: dívida/PIB com flutuação em 1997 ou primário maior em 1996–98
+- Posição externa: reservas × dívida externa de curto prazo
+
+# {.fecho}
+
+::: {.site}
+analisemacro.com.br
+:::
+
+::: {.mote}
+A verdade está nos dados
+:::
