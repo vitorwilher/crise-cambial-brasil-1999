@@ -11,3 +11,4 @@ referencias/*.pdf
 slides/**/*.html
 slides/**/*_files/
 .quarto/
+!slides/maquina-de-escrever.html

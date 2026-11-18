@@ -1,0 +1,118 @@
+<script>
+/* Máquina de escrever do slide de fecho.
+   O texto do .mote é escrito letra a letra quando o slide entra, com som de
+   tecla sintetizado (Web Audio) — sem arquivo de áudio externo.
+
+   ⚠️ Navegador só toca áudio DEPOIS de um gesto do usuário. Numa apresentação
+   isso já aconteceu (o clique/tecla que avançou os slides), então o som sai.
+   Se o slide for aberto direto pela URL, escreve em silêncio — de propósito,
+   nunca quebra. */
+(function () {
+  var TEXTO_POR_LETRA = 55;   // ms
+  var audioCtx = null;
+  var somLiberado = false;
+
+  ['click', 'keydown', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, function () { somLiberado = true; }, { once: true });
+  });
+
+  function ctx() {
+    if (!audioCtx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  /* Clique de tecla: ruído branco curto com envelope percussivo. */
+  function tecla(forte) {
+    if (!somLiberado) return;
+    var ac = ctx();
+    if (!ac) return;
+
+    var dur = forte ? 0.055 : 0.035;
+    var buf = ac.createBuffer(1, Math.ceil(ac.sampleRate * dur), ac.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < d.length; i++) {
+      var decai = Math.pow(1 - i / d.length, forte ? 2.2 : 3.4);
+      d[i] = (Math.random() * 2 - 1) * decai;
+    }
+
+    var src = ac.createBufferSource();
+    src.buffer = buf;
+
+    var passa = ac.createBiquadFilter();      // tira o grave: soa metálico
+    passa.type = 'highpass';
+    passa.frequency.value = forte ? 900 : 1500;
+
+    var corpo = ac.createBiquadFilter();      // dá o "toc" da haste
+    corpo.type = 'bandpass';
+    corpo.frequency.value = forte ? 1800 : 2600;
+    corpo.Q.value = 0.9;
+
+    var vol = ac.createGain();
+    vol.gain.value = forte ? 0.16 : 0.09;
+
+    src.connect(passa); passa.connect(corpo); corpo.connect(vol); vol.connect(ac.destination);
+    src.start();
+  }
+
+  function escrever(el) {
+    if (el.dataset.escrito === '1') return;
+    el.dataset.escrito = '1';
+
+    var frase = (el.dataset.texto || el.textContent).trim();
+    el.dataset.texto = frase;
+    el.textContent = '';
+    el.classList.remove('pronto');
+
+    var i = 0;
+    (function passo() {
+      if (i >= frase.length) {
+        setTimeout(function () { el.classList.add('pronto'); }, 900);
+        return;
+      }
+      var ch = frase[i++];
+      el.textContent += ch;
+      if (ch !== ' ') tecla(i % 7 === 0);   // variação: nem toda tecla igual
+      setTimeout(passo, ch === ' ' ? TEXTO_POR_LETRA * 1.6 : TEXTO_POR_LETRA);
+    })();
+  }
+
+  function rearmar(el) {          // permite reapresentar sem recarregar a página
+    el.dataset.escrito = '0';
+    el.textContent = '';
+    el.classList.remove('pronto');
+  }
+
+  function ligar(reveal) {
+    reveal.on('slidechanged', function (e) {
+      var m = e.currentSlide.querySelector('.mote');
+      if (m) setTimeout(function () { escrever(m); }, 320);
+      if (e.previousSlide) {
+        var ant = e.previousSlide.querySelector('.mote');
+        if (ant) rearmar(ant);
+      }
+    });
+    var atual = reveal.getCurrentSlide && reveal.getCurrentSlide();
+    if (atual) {
+      var m = atual.querySelector('.mote');
+      if (m) setTimeout(function () { escrever(m); }, 320);
+    }
+  }
+
+  if (window.Reveal && window.Reveal.on) {
+    window.Reveal.isReady && window.Reveal.isReady()
+      ? ligar(window.Reveal)
+      : window.Reveal.on('ready', function () { ligar(window.Reveal); });
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.Reveal && window.Reveal.on) {
+        window.Reveal.on('ready', function () { ligar(window.Reveal); });
+      }
+    });
+  }
+})();
+</script>
