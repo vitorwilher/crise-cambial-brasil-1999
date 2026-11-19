@@ -60,7 +60,10 @@ def main() -> None:
               # Prazo médio dos títulos emitidos em oferta pública (mensal; só
               # meses com emissão). LTN desde ago/1996; LFT desde jul/1998.
               "prazo_ltn": sgs(10613),
-              "prazo_lft": sgs(10614)}
+              "prazo_lft": sgs(10614),
+              # bloco 5: inflação e atividade depois da flutuação
+              "ipca_12m": sgs(13522, "01/01/1996", "31/12/2001"),
+              "pib_crescimento_anual": sgs(7326, "01/01/1994", "31/12/2001")}
 
     # Fiscal, mensal, Governo Federal + Banco Central (o consolidado só existe
     # no SGS a partir de 2001-02). Sinal das NFSP: positivo = déficit.

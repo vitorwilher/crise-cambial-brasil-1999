@@ -30,6 +30,8 @@ vulnerabilidades, dinâmica, ≥ 2 modelos do curso, resposta de política, cont
 | Dívida líquida GF+BC | SGS/BCB | 4468 | R$ milhões |
 | PIB mensal corrente / IGP-DI | SGS/BCB | 4380 / 190 | R$ milhões / % a.m. |
 | Composição da dívida por indexador (dez/1994–99) | Relatórios Anuais do BC | transcrito | % |
+| IPCA 12 meses / PIB crescimento real anual | SGS/BCB | 13522 / 7326 | % |
+| Cronologia de política (FMI, BIS) | memorandos e comunicados | transcrito, com fonte por linha | — |
 
 ⚠️ **Fiscal só existe para Governo Federal + BC antes de 2001** no SGS/Ipeadata
 (o consolidado começa em 2001-02). O consolidado anual está nos Relatórios Anuais.
@@ -42,7 +44,7 @@ vulnerabilidades, dinâmica, ≥ 2 modelos do curso, resposta de política, cont
 | 2. Vulnerabilidades | `10_fiscal.py` (hiato fiscal), `20_...` (prazo/indexação) | falta reservas × dívida externa de curto prazo |
 | 3. Dinâmica da crise | `30_markov_juros.py`, `32_pressao_cambial.py` | falta cronologia documentada |
 | 4. Interpretação teórica | `30`/`31` (2ª geração); `10` (1ª geração) | falta teste explícito de 1ª geração |
-| 5. Resposta de política | — | a fazer (FMI, metas, custo) |
+| 5. Resposta de política | `50_resposta_politica.py` + `referencias/fontes_fmi/cronologia_politica.csv` | feito (FMI, BIS, flutuação, metas, custos) |
 | 6. Contrafactual | `40_contrafactual.py` + simulador em `app/` | feito (equilíbrio parcial) |
 
 Rodar tudo: `./rodar_tudo.sh`. Publicar o app no shinyapps.io: `./publicar_app.sh`.

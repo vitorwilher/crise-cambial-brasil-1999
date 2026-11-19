@@ -11,4 +11,5 @@ $PY src/30_markov_juros.py         # blocos 3-4: regimes nos juros (2ª geraçã
 $PY src/31_markov_robustez.py      # robustez e bootstrap da LR (~5 min)
 $PY src/32_pressao_cambial.py      # bloco 3: índice de pressão cambial
 $PY src/40_contrafactual.py        # bloco 6: contrafactual (+ base do app)
+$PY src/50_resposta_politica.py    # bloco 5: FMI, flutuação, metas e custos
 quarto render slides/apresentacao/slides.qmd

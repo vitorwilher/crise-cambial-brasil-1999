@@ -50,6 +50,7 @@ def simular(superavit=None, inicio="1996-01", sens98=B98, teto_selic=None):
 
 
 OBS = simular()
+TETO_MAX = int(np.ceil(m.loc[DEFESA, "selic"].max()))  # acima disso o teto não corta nada
 
 texto_metodo = ui.markdown(f"""
 **Como funciona.** A simulação reproduz a dívida líquida federal observada mês a mês
@@ -60,7 +61,8 @@ patrimoniais ficam como foram (equilíbrio parcial).
 - **Sensibilidade à Selic em 1998:** {B95:.2f} era a de 1995–97 (dívida mais prefixada);
   {B98:.2f} foi a de 1998 (dívida 69% na Selic).
 - **Teto da Selic na defesa (nov/97–dez/98):** limita o juro usado contra os ataques
-  da Ásia e da Rússia; a Selic média antes da Ásia era {REF:.1f}%.
+  da Ásia e da Rússia; a Selic média antes da Ásia era {REF:.1f}%. O efeito é pequeno
+  (no máximo ~1,4 p.p. do PIB): o gráfico de baixo mostra cada alavanca isolada.
 
 Fonte: BCB/SGS (4468, 4606, 4639, 4380, 190, 1178). Código:
 [github.com/vitorwilher/crise-cambial-brasil-1999](https://github.com/vitorwilher/crise-cambial-brasil-1999).
@@ -75,7 +77,7 @@ app_ui = ui.page_navbar(
         "Simulador do contrafactual",
         ui.layout_sidebar(
             ui.sidebar(
-                ui.input_switch("usa_primario", "Mudar o primário", value=True),
+                ui.input_switch("usa_primario", "Fixar o superávit primário", value=False),
                 ui.input_slider("primario", "Superávit primário (% do PIB)",
                                 min=-1, max=4, value=round(S99, 1), step=0.1),
                 ui.input_select("inicio", "A partir de",
@@ -83,12 +85,13 @@ app_ui = ui.page_navbar(
                                  "1997-11": "nov/1997 (Ásia)", "1998-09": "set/1998 (Rússia)"}),
                 ui.input_slider("sens", "Sensibilidade do custo da dívida à Selic em 1998",
                                 min=0.0, max=0.6, value=round(B98, 2), step=0.01),
-                ui.input_switch("usa_teto", "Limitar a Selic na defesa", value=False),
-                ui.input_slider("teto", "Teto da Selic (% a.a.)", min=15, max=45,
-                                value=round(REF), step=1),
+                ui.input_slider("teto", "Teto da Selic na defesa, nov/97–dez/98 "
+                                "(% a.a.; 46 = sem teto)", min=15, max=TETO_MAX,
+                                value=TETO_MAX, step=1),
                 width=340,
             ),
-            ui.output_plot("grafico", height="430px"),
+            ui.output_plot("grafico", height="360px"),
+            ui.output_plot("contribuicoes", height="250px"),
             ui.output_ui("resumo"),
             texto_metodo,
         ),
@@ -99,12 +102,48 @@ app_ui = ui.page_navbar(
 
 
 def server(input, output, session):
-    def cenario():
-        return simular(
+    def alavancas():
+        return dict(
             superavit=input.primario() if input.usa_primario() else None,
-            inicio=input.inicio(), sens98=input.sens(),
-            teto_selic=input.teto() if input.usa_teto() else None,
+            inicio=input.inicio(),
+            # o slider arredonda: o valor padrão (0,45) significa "a observada"
+            sens98=B98 if abs(input.sens() - round(B98, 2)) < 1e-9 else input.sens(),
+            teto_selic=input.teto() if input.teto() < TETO_MAX else None,
         )
+
+    def cenario():
+        return simular(**alavancas())
+
+    def separadas():
+        a = alavancas()
+        return {
+            "Primário": simular(superavit=a["superavit"], inicio=a["inicio"]) - OBS,
+            "Indexação à Selic": simular(sens98=a["sens98"]) - OBS,
+            "Teto da Selic": simular(teto_selic=a["teto_selic"]) - OBS,
+            "Todas juntas": cenario() - OBS,
+        }
+
+    @render.plot
+    def contribuicoes():
+        sep = separadas()
+        fig, ax = plt.subplots(figsize=(9, 2.6))
+        cores = {"Primário": "#12B76A", "Indexação à Selic": AMBER,
+                 "Teto da Selic": BLUE, "Todas juntas": RED}
+        for nome, serie in sep.items():
+            ax.plot(serie.index, serie, color=cores[nome], lw=1.6 if nome != "Todas juntas" else 2.2,
+                    label=f"{nome}: {serie.loc['1998-12-01']:+.1f} p.p. em dez/98")
+        ax.axhline(0, color=MUTED, lw=0.8)
+        lo = min(-1.0, min(v.min() for v in sep.values()) * 1.1)
+        hi = max(1.0, max(v.max() for v in sep.values()) * 1.1)
+        ax.set_ylim(lo, hi)
+        ax.set_title("Diferença em relação ao observado, por alavanca (p.p. do PIB)",
+                     loc="left", fontsize=10, color=NAVY)
+        for sp in ["top", "right"]:
+            ax.spines[sp].set_visible(False)
+        ax.grid(axis="y", color="#E6EAF0")
+        ax.legend(frameon=False, fontsize=8, loc="lower left", ncol=2)
+        fig.tight_layout()
+        return fig
 
     @render.plot
     def grafico():
