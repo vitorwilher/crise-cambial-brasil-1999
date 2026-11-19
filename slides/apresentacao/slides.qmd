@@ -45,7 +45,7 @@ defesa com juros piorava o fiscal; as reservas compraram tempo até acabar o fô
 | 3. Dinâmica da crise | Markov-switching nos juros, índice de pressão cambial |
 | 4. Interpretação teórica | 1ª geração (fiscal) × 2ª geração (custo da defesa) |
 | 5. Resposta de política | FMI, flutuação, metas *(em construção)* |
-| 6. Contrafactual | simulação da dívida *(em construção)* |
+| 6. Contrafactual | simulação contábil da dívida federal, 1996–1999 |
 
 # 1. Contexto pré-crise {.divider}
 
@@ -115,7 +115,7 @@ BCB, Relatórios Anuais 1997–1999 (Quadros 3.5, 4.5, 4.8); SGS 10613; IPEA TD 
 
 - Taxa implícita da dívida líquida federal contra a Selic, mensal
 - Sensibilidade ao juro: **0,23** em 1995–97 e **0,45** em 1998
-- A alta de ago→out/98 (+22,4 p.p. de Selic) custou cerca de **2,0% do PIB ao ano**
+- A alta de ago→out/98 (+22,4 p.p. de Selic), se mantida por 12 meses, custaria **~2,0% do PIB**
 
 . . .
 
@@ -203,14 +203,46 @@ Os dois se reforçam: a dívida na Selic liga o custo da defesa ao fundamento fi
 - Dívida/PIB com o PIB revisado do IBGE: nível abaixo do publicado em 1998
 - O salto de reservas de 18/12/98 ainda precisa de fonte documental
 
-# 5–6. Resposta e contrafactual {.divider}
+# 6. Contrafactual {.divider}
 
-## Em construção
+## Como o contrafactual foi montado
 
-- FMI: datas, valores e metas de primário do acordo de nov/98
-- Flutuação e metas de inflação: o que mudou no fiscal depois de 1999
-- Contrafactual: dívida/PIB com flutuação em 1997 ou primário maior em 1996–98
-- Posição externa: reservas × dívida externa de curto prazo
+- A dívida federal evolui por **D = D₋₁·(1 + r) + primário + ajustes**
+- A simulação base reproduz a dívida observada mês a mês, de 1996 a 1999
+- Cada cenário troca **um** elemento e mantém o resto como observado
+- Selic, câmbio e crescimento ficam como foram: equilíbrio parcial
+
+::: {.fonte}
+r = juros do mês / dívida do mês anterior (SGS 4606, 4468); primário SGS 4639; ajustes = resíduo.
+:::
+
+## Três políticas alternativas
+
+::: {.fig}
+![](../../saidas/contrafactual_divida.png)
+:::
+
+## O que cada política teria comprado
+
+| Cenário | Dívida/PIB dez/98 | Diferença |
+|---|---|---|
+| Observado | 22,9 | — |
+| Primário de 1999 (2,1% do PIB) desde 1996 | **15,8** | **−7,1** |
+| Sem as defesas com juros (nov/97–dez/98) | 22,1 | −0,8 |
+| Dívida menos indexada à Selic em 1998 | 22,6 | −0,3 |
+
+. . .
+
+::: {.destaque}
+A margem decisiva era fiscal: o primário pesa cerca de nove vezes mais que a defesa com juros.
+:::
+
+## O que o contrafactual não captura
+
+- Um primário maior teria reduzido o prêmio de risco e os juros: o ganho está **subestimado**
+- Flutuar antes teria antecipado o salto cambial sobre a dívida indexada ao dólar
+- Mesmo com 2,1% de primário a dívida sobe em 1998: os ajustes patrimoniais pesam
+- Falta o bloco 5: o acordo com o FMI e a transição para as metas de inflação
 
 # {.fecho}
 

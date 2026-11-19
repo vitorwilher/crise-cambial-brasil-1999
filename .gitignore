@@ -12,3 +12,5 @@ slides/**/*.html
 slides/**/*_files/
 .quarto/
 !slides/maquina-de-escrever.html
+app/www/
+rsconnect-python/

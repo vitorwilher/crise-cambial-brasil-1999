@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Trabalho final (em dupla) de Dívida Soberana e Câmbio (FGV EPGE, Profa. Ana Flávia).
+Trabalho final (em dupla) de Dívida Soberana e Câmbio (FGV EPGE).
 Pergunta do enunciado: **por que o regime de bandas cambiais entrou em colapso em
 janeiro de 1999 e qual foi o papel das reservas, dos juros e da política fiscal?**
 
@@ -43,9 +43,9 @@ vulnerabilidades, dinâmica, ≥ 2 modelos do curso, resposta de política, cont
 | 3. Dinâmica da crise | `30_markov_juros.py`, `32_pressao_cambial.py` | falta cronologia documentada |
 | 4. Interpretação teórica | `30`/`31` (2ª geração); `10` (1ª geração) | falta teste explícito de 1ª geração |
 | 5. Resposta de política | — | a fazer (FMI, metas, custo) |
-| 6. Contrafactual | — | a fazer (simulação da dívida) |
+| 6. Contrafactual | `40_contrafactual.py` + simulador em `app/` | feito (equilíbrio parcial) |
 
-Rodar tudo: `./rodar_tudo.sh`.
+Rodar tudo: `./rodar_tudo.sh`. Publicar o app no shinyapps.io: `./publicar_app.sh`.
 
 - SGS: `api.bcb.gov.br/dados/serie/bcdata.sgs.{cod}/dados` (janelas de até 10 anos)
 - Ipeadata: `ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='...')`

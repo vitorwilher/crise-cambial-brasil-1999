@@ -19,3 +19,8 @@ vão para `saidas/`. Fontes, códigos das séries e o mapa roteiro → scripts e
 
 `slides/apresentacao/slides.qmd` (Quarto revealjs, tema da Análise Macro). Depois de
 rodar `./rodar_tudo.sh`: `quarto render slides/apresentacao/slides.qmd`.
+
+## App
+
+Apresentação e simulador do contrafactual (Shiny para Python) em `app/`.
+Publicação no shinyapps.io: `./publicar_app.sh`.
