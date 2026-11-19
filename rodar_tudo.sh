@@ -12,4 +12,5 @@ $PY src/31_markov_robustez.py      # robustez e bootstrap da LR (~5 min)
 $PY src/32_pressao_cambial.py      # bloco 3: índice de pressão cambial
 $PY src/40_contrafactual.py        # bloco 6: contrafactual (+ base do app)
 $PY src/50_resposta_politica.py    # bloco 5: FMI, flutuação, metas e custos
+$PY src/60_controle_sintetico.py   # blocos 5-6: controle sintético (custos do colapso)
 quarto render slides/apresentacao/slides.qmd

@@ -45,7 +45,7 @@ vulnerabilidades, dinâmica, ≥ 2 modelos do curso, resposta de política, cont
 | 3. Dinâmica da crise | `30_markov_juros.py`, `32_pressao_cambial.py` | falta cronologia documentada |
 | 4. Interpretação teórica | `30`/`31` (2ª geração); `10` (1ª geração) | falta teste explícito de 1ª geração |
 | 5. Resposta de política | `50_resposta_politica.py` + `referencias/fontes_fmi/cronologia_politica.csv` | feito (FMI, BIS, flutuação, metas, custos) |
-| 6. Contrafactual | `40_contrafactual.py` + simulador em `app/` | feito (equilíbrio parcial) |
+| 6. Contrafactual | `40_contrafactual.py` + simulador em `app/`; `60_controle_sintetico.py` (custos do colapso) | feito; controle sintético não significativo (p = 0,62) |
 
 Rodar tudo: `./rodar_tudo.sh`. Publicar o app no shinyapps.io: `./publicar_app.sh`.
 
