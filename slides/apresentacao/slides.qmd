@@ -42,7 +42,7 @@ com juros piorava o fiscal; as reservas compraram tempo até o fôlego acabar.
 ## 1 · O fiscal não acompanhou a âncora
 
 ::: {.fig}
-![](../../saidas/fiscal_painel.png)
+![](../../saidas/slides/fiscal_painel.png)
 :::
 
 ::: {.fonte}
@@ -56,7 +56,7 @@ Em 1998 faltaram 4 p.p. do PIB de primário para estabilizar a dívida federal. 
 ## 2 · A dívida trocou prefixado por Selic e câmbio
 
 ::: {.fig}
-![](../../saidas/prazo_composicao_divida.png)
+![](../../saidas/slides/prazo_composicao_divida.png)
 :::
 
 ::: {.fonte}
@@ -70,7 +70,7 @@ Prefixados: 61% (1996) → 3,5% (1998). Sensibilidade do custo da dívida à Sel
 ## 3 · Cada choque externo virou um ataque, e o BC respondeu com juros
 
 ::: {.fig}
-![](../../saidas/markov_probabilidades.png)
+![](../../saidas/slides/markov_probabilidades.png)
 :::
 
 ::: {.fonte}
@@ -84,7 +84,7 @@ Markov-switching: prêmio de 8 × 28 p.p.; LR = 129, p bootstrap = 0,002. Em dez
 ## 3 · No fim, o ataque passou pelas reservas
 
 ::: {.fig}
-![](../../saidas/emp_pressao_cambial.png)
+![](../../saidas/slides/emp_pressao_cambial.png)
 :::
 
 ::: {.fonte}
@@ -114,7 +114,7 @@ A dívida indexada à Selic é a ponte: liga o custo de defender o câmbio ao fu
 ## 5 · O FMI comprou semanas; a âncora nova resolveu
 
 ::: {.fig}
-![](../../saidas/resposta_virada_regime.png)
+![](../../saidas/slides/resposta_virada_regime.png)
 :::
 
 ::: {.fonte}
@@ -128,7 +128,7 @@ Pacote de ~US$ 41 bi: reservas +8,9 bi em dez/98 e −4,5 bi até 12/01. Depois:
 ## 5 · O custo veio pelo balanço, não pela atividade
 
 ::: {.fig}
-![](../../saidas/sc_producao.png)
+![](../../saidas/slides/sc_producao.png)
 :::
 
 ::: {.fonte}
@@ -142,7 +142,7 @@ Indústria −7,9 pts e inflação +0,9 p.p. (p = 0,62): nada fora do comum. A d
 ## 6 · O primário teria mudado a história; os juros, pouco
 
 ::: {.fig}
-![](../../saidas/contrafactual_divida.png)
+![](../../saidas/slides/contrafactual_divida.png)
 :::
 
 ::: {.fonte}

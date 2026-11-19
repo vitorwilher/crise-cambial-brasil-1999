@@ -14,6 +14,7 @@ Uso:
     am.salvar(fig, 'saidas/grafico.png')
 """
 import os
+from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -64,14 +65,24 @@ def subtitulo_eixo(ax, texto):
 
 
 def titulos(fig, titulo, subtitulo=None, x=0.06):
-    fig.text(x, 0.985, titulo, ha='left', va='top', fontsize=14, fontweight='bold', color=NAVY)
+    _moldura(fig, fig.text(x, 0.985, titulo, ha='left', va='top', fontsize=14,
+                           fontweight='bold', color=NAVY))
     if subtitulo:
-        fig.text(x, 0.945, subtitulo, ha='left', va='top', fontsize=10.5, color=INK_SOFT)
+        _moldura(fig, fig.text(x, 0.945, subtitulo, ha='left', va='top', fontsize=10.5,
+                               color=INK_SOFT))
     _logo(fig)
 
 
+def _moldura(fig, artista):
+    """Guarda título, subtítulo, rodapé e logo: a versão para slide sai sem eles."""
+    if not hasattr(fig, '_am_moldura'):
+        fig._am_moldura = []
+    fig._am_moldura.append(artista)
+
+
 def rodape(fig, texto, x=0.06, y=0.012):
-    fig.text(x, y, texto, ha='left', va='bottom', fontsize=7.8, color=MUTED, linespacing=1.4)
+    _moldura(fig, fig.text(x, y, texto, ha='left', va='bottom', fontsize=7.8, color=MUTED,
+                           linespacing=1.4))
 
 
 def _logo(fig, largura=0.07):
@@ -83,6 +94,7 @@ def _logo(fig, largura=0.07):
     ax = fig.add_axes([0.98 - largura, 0.985 - altura, largura, altura])
     ax.imshow(img)
     ax.axis('off')
+    _moldura(fig, ax)
 
 
 def rotulo_final(ax, x, y, texto, cor=NAVY, dy=6):
@@ -93,7 +105,15 @@ def rotulo_final(ax, x, y, texto, cor=NAVY, dy=6):
 
 
 def salvar(fig, caminho, dpi=200):
+    """Salva a figura e, se ela tem moldura, uma versão para slide em slides/ (só os painéis)."""
     fig.savefig(caminho, dpi=dpi, facecolor=PAPER)
+    if getattr(fig, '_am_moldura', None):
+        for a in fig._am_moldura:
+            a.set_visible(False)
+        destino = Path(caminho).parent / 'slides'
+        destino.mkdir(exist_ok=True)
+        fig.savefig(destino / Path(caminho).name, dpi=dpi, facecolor=PAPER,
+                    bbox_inches='tight', pad_inches=0.12)
     plt.close(fig)
 
 
