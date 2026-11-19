@@ -103,7 +103,7 @@ def barras(ax, df, largura):
     ax.axhline(0, color=am.MUTED, lw=0.8)
 
 
-fig, axs = am.figura(2, 1, figsize=(9.5, 7.5))
+fig, axs = am.figura(1, 2, figsize=(13, 5.4))
 ax = axs[0]; am.eixo(ax)
 mm = mens.loc["1995-01":"1999-03"]
 barras(ax, mm, 22)
@@ -120,8 +120,8 @@ for dt, v in mm["emp"].items():
         ax.annotate(f"jan/99: {am.br(v)}", xy=(dt, TOPO), xytext=(-70, -12),
                     textcoords="offset points", fontsize=7, color=am.RED,
                     arrowprops=dict(arrowstyle="->", color=am.RED, lw=0.7))
-am.subtitulo_eixo(ax, "Mensal, jan/1995–mar/1999 (pesos e limiares estimados na banda, jul/95–dez/98)")
-ax.legend(frameon=False, fontsize=8, ncol=4, loc="upper left")
+am.subtitulo_eixo(ax, "Mensal, jan/1995–mar/1999")
+ax.legend(frameon=False, fontsize=8, ncol=2, loc="upper left")
 ax2 = ax.twinx()
 ax2.plot(mm.index, mm["prob_ataque_ms"], color=am.GREEN, lw=1.2, ls="-")
 ax2.set_ylim(0, 1.6); ax2.set_yticks([0, 0.5, 1])
@@ -141,10 +141,13 @@ for dt, nome, ha in [("1998-11-13", "Acordo FMI ", "right"), ("1999-01-06", "Min
 ax.annotate("salto de reservas em 18/12\n(desembolso externo?)", xy=(pd.Timestamp("1998-12-18"), -27),
             xytext=(-120, 0), textcoords="offset points", fontsize=7, color=am.INK_SOFT,
             arrowprops=dict(arrowstyle="->", color=am.INK_SOFT, lw=0.7), va="center")
-am.subtitulo_eixo(ax, "Semanal, set/1998–mar/1999 (reservas diárias; pesos na própria janela)")
+am.subtitulo_eixo(ax, "Semanal, set/1998–mar/1999 (reservas diárias)")
 am.titulos(fig, "Índice de pressão cambial: por onde o ataque passou",
            "EMP = depreciação − (σe/σr)·Δreservas% + (σe/σi)·Δ(Selic − Fed funds); "
            "contribuições em p.p.")
 am.rodape(fig, "Fonte: BCB/SGS (PTAX 1, Selic 1178, reservas 3546 e 13621), FRED (DFF). "
           "Reservas incluem desembolsos do FMI. Elaboração própria.")
+am.eixo_datas(axs[0])
+am.eixo_datas(axs[1], list(range(1, 13)))
+fig.subplots_adjust(top=0.82, wspace=0.2)
 am.salvar(fig, SAIDAS / "emp_pressao_cambial.png")

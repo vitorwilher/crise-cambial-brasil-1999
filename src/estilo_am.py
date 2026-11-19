@@ -106,3 +106,19 @@ def eixo_br(ax, casas=1, sufixo='', eixo='y'):
     """Rótulos do eixo com vírgula decimal."""
     f = lambda v, _: br(v, casas) + sufixo
     (ax.yaxis if eixo == 'y' else ax.xaxis).set_major_formatter(f)
+
+
+_MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+
+
+def eixo_datas(ax, meses=None):
+    """Datas em português: só o ano (padrão) ou 'mmm/aa' nos meses pedidos."""
+    import matplotlib.dates as mdates
+    import matplotlib.ticker as mticker
+    if meses is None:
+        ax.xaxis.set_major_locator(mdates.YearLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    else:
+        ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=meses))
+        ax.xaxis.set_major_formatter(mticker.FuncFormatter(
+            lambda x, _: (lambda t: f'{_MESES[t.month - 1]}/{t:%y}')(mdates.num2date(x))))

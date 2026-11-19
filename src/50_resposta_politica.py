@@ -106,7 +106,7 @@ print(custos.to_string(index=False))
 # ---------- gráfico 1: virada de regime ----------
 EVENTOS = {"1998-11-13": "Memorando FMI", "1998-12-02": "Stand-by", "1999-01-15": "Flutuação",
            "1999-03-04": "Selic 45%", "1999-07-01": "Metas de inflação"}
-fig, axs = am.figura(2, 2, figsize=(11, 7.2), sharex=True)
+fig, axs = am.figura(2, 2, figsize=(13, 6.4), sharex=True)
 paineis = [("ptax", r"Câmbio R\$/US\$ (PTAX)", am.NAVY), ("selic", "Selic efetiva (% a.a.)", am.AMBER),
            ("embi", "EMBI+ Brasil (p.b.)", am.RED), ("reservas", r"Reservas, liquidez (US\$ mi)", am.BLUE)]
 for ax, (col, tit, cor) in zip(axs.flat, paineis):
@@ -130,6 +130,7 @@ am.rodape(fig, "Fonte: BCB/SGS (1, 1178, 13621), Ipeadata (EMBI+); eventos: FMI 
           "memorandos de 13/11/98, 08/03/99, 02/07/99), BIS (10/12/98). Elaboração própria.")
 for a in axs.flat:
     eixo_mes(a, [1, 4, 7, 10])
+fig.subplots_adjust(top=0.86, hspace=0.3, wspace=0.15)
 am.salvar(fig, SAIDAS / "resposta_virada_regime.png")
 
 # ---------- gráfico 2: fiscal e inflação contra as metas ----------

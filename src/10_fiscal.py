@@ -140,7 +140,7 @@ print("\nControle dez/1998: dívida GF+BC R$ mi =", round(f.loc["1998-12-01", "d
 f.to_csv(SAIDAS / "fiscal_painel.csv", index_label="mes")
 
 # ---------- gráficos ----------
-fig, axs = am.figura(2, 2, figsize=(11, 7.6))
+fig, axs = am.figura(2, 2, figsize=(13, 6.6))
 ax = axs[0, 0]; am.eixo(ax)
 p = f.loc["1995-07":"2001-12"]
 ax.plot(p.index, p["juros_12m"], color=am.AMBER, lw=1.8, label="Juros nominais")
@@ -190,4 +190,7 @@ am.titulos(fig, "Política fiscal: déficit nominal alto, dívida em alta e juro
            "Governo Federal + Banco Central, 1994–2001")
 am.rodape(fig, "Fonte: BCB/SGS (NFSP 4639, 4573, 4606, 5783, 5717, 5750; DLSP 4468; PIB 4380; "
           "IGP-DI 190; Selic 1178). Elaboração própria.")
+for a in (axs[0, 0], axs[0, 1]):
+    am.eixo_datas(a)
+fig.subplots_adjust(top=0.86, hspace=0.35, wspace=0.15)
 am.salvar(fig, SAIDAS / "fiscal_painel.png")

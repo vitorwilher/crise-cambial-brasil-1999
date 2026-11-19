@@ -95,15 +95,15 @@ resumo.to_csv(SAIDAS / "prazo_markov_resultados.csv")
 # ---- 3. gráfico ----
 comp = pd.read_csv(RAIZ / "referencias" / "fontes_divida" /
                    "composicao_indexador_1994_1999.csv", comment="#")
-fig, axs = am.figura(2, 1, figsize=(9.5, 7.6))
+fig, axs = am.figura(1, 2, figsize=(13, 5.4))
 ax = axs[0]; am.eixo(ax)
 pz_plot = pz_m.loc["1996-08":"1999-12"]
 ax.plot(pz_plot.index, pz_plot.values, color=am.NAVY, lw=1.8, marker="o", ms=3,
-        label="Prazo médio das LTN emitidas (SGS 10613)")
+        label="LTN prefixadas (SGS 10613)")
 pl = pd.read_csv(DADOS / "prazo_lft.csv", index_col=0, parse_dates=True)["prazo_lft"]
 pl = pl.loc[:"1999-12"]
 ax.plot(pl.index, pl.values, color=am.AMBER, lw=1.4, marker="o", ms=2.5,
-        label="Prazo médio das LFT emitidas (SGS 10614)")
+        label="LFT, Selic (SGS 10614)")
 ax2 = ax.twinx()
 ax2.fill_between(p_fixo.index, p_fixo.values, color=am.BLUE_WASH, alpha=0.6, step="mid")
 ax2.set_ylim(0, 1.05); ax2.set_yticks([0, 0.5, 1])
@@ -116,9 +116,8 @@ for dt, nome in {"1997-10-23": "Hong Kong", "1998-08-17": "Rússia",
     ax.axvline(pd.Timestamp(dt), color=am.RED, lw=0.7, ls="--")
     ax.text(pd.Timestamp(dt), ax.get_ylim()[1], nome + " ", fontsize=7, color=am.RED,
             rotation=90, va="top", ha="right")
-am.subtitulo_eixo(ax, "Prazo médio de emissão (meses) e prob. do regime de ataque "
-                      "(área azul, eixo dir.)")
-ax.legend(frameon=False, fontsize=8, loc="upper left")
+am.subtitulo_eixo(ax, "Prazo médio de emissão (meses)")
+ax.legend(frameon=False, fontsize=8, loc="center left", bbox_to_anchor=(0, 0.72))
 
 ax = axs[1]; am.eixo(ax)
 grupos = {"Prefixado": ("prefixado", am.NAVY), "Over/Selic": ("selic", am.AMBER),
@@ -134,11 +133,16 @@ for nome, (col, cor) in grupos.items():
                     fontsize=7, color="white")
     base += v
 ax.set_ylim(0, 100)
-am.subtitulo_eixo(ax, "Títulos federais fora do BCB por indexador, dezembro (% do total)")
+am.subtitulo_eixo(ax, "Títulos federais por indexador, dezembro (% do total)")
 ax.legend(frameon=False, fontsize=8, ncol=4, loc="upper center",
-          bbox_to_anchor=(0.5, -0.08))
+          bbox_to_anchor=(0.5, -0.06))
 am.titulos(fig, "O encurtamento e a indexação da dívida como sinal do ataque",
            "Com a crise, o Tesouro troca LTN prefixada e longa por LFT e títulos cambiais")
 am.rodape(fig, "Fonte: BCB/SGS (10613, 10614); BCB, Relatórios Anuais 1997–1999 "
           "(Quadros 3.5, 4.5, 4.8). Elaboração própria.")
+am.eixo_datas(axs[0])
+ax2.text(0.01, 0.6, "área azul: prob. do regime\nde ataque (eixo dir.)", transform=axs[0].transAxes,
+         ha="left", va="top", fontsize=8, color=am.BLUE,
+         bbox=dict(facecolor=am.PAPER, edgecolor="none", pad=1))
+fig.subplots_adjust(top=0.82, wspace=0.18, bottom=0.14)
 am.salvar(fig, SAIDAS / "prazo_composicao_divida.png")

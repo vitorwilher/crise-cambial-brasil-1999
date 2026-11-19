@@ -333,6 +333,11 @@ $code-block-font-size: 0.5em;
 
 // Gráficos do trabalho (fundo claro) sobre o fundo escuro do deck
 .reveal .fig { text-align: center; margin-top: .2em; }
-.reveal .fig img { max-height: 575px; border-radius: 10px; box-shadow: 0 0 0 1px rgba(111,182,238,.25); }
+.reveal .fig img { max-height: 515px; border-radius: 10px; box-shadow: 0 0 0 1px rgba(111,182,238,.25); }
 .reveal .fig-alta img { max-height: 590px; }
 .reveal .fonte { font-family: 'JetBrains Mono', monospace; font-size: .42em; max-width: 85%; color: #8894a5; margin-top: .3em; }
+
+// Fio da história: uma linha por slide, para o apresentador não se perder
+.reveal .fio { font-family: 'Inter', sans-serif; font-size: .5em; line-height: 1.35; color: #cfe3f5;
+  border-left: 3px solid #03cdff; padding: .15em 0 .15em .6em; margin-top: .45em; max-width: 80%; }
+.reveal .fio strong { color: #03cdff; font-weight: 600; }

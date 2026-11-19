@@ -35,6 +35,10 @@ com juros piorava o fiscal; as reservas compraram tempo até o fôlego acabar.
 | **Juros** | dois regimes nos juros; com 69% da dívida na Selic, o custo da defesa dobrou |
 | **Reservas** | depois do FMI, os juros caem e as reservas sangram até a flutuação |
 
+::: {.fio}
+**Fio ·** A tese em três canais. Os slides seguintes provam cada um, na ordem do enunciado: contexto → vulnerabilidades → dinâmica → modelos → resposta → contrafactual.
+:::
+
 ## 1 · O fiscal não acompanhou a âncora
 
 ::: {.fig}
@@ -43,6 +47,10 @@ com juros piorava o fiscal; as reservas compraram tempo até o fôlego acabar.
 
 ::: {.fonte}
 Em 1998 faltaram 4 p.p. do PIB de primário para estabilizar a dívida federal. BCB/SGS.
+:::
+
+::: {.fio}
+**Fio ·** Contexto: a âncora cambial derrubou a inflação, mas o primário ficou em zero e a dívida quase dobrou. O fundamento era fraco. → Por que os juros pesavam tanto no fiscal? Pela composição da dívida.
 :::
 
 ## 2 · A dívida trocou prefixado por Selic e câmbio
@@ -55,6 +63,10 @@ Em 1998 faltaram 4 p.p. do PIB de primário para estabilizar a dívida federal. 
 Prefixados: 61% (1996) → 3,5% (1998). Sensibilidade do custo da dívida à Selic: 0,23 → 0,45. Relatórios Anuais do BC; SGS.
 :::
 
+::: {.fio}
+**Fio ·** Vulnerabilidade: com 69% da dívida na Selic, subir juros para defender o câmbio passou a custar o dobro no fiscal. → E quando os juros subiram? Nos ataques.
+:::
+
 ## 3 · Cada choque externo virou um ataque, e o BC respondeu com juros
 
 ::: {.fig}
@@ -65,6 +77,10 @@ Prefixados: 61% (1996) → 3,5% (1998). Sensibilidade do custo da dívida à Sel
 Markov-switching: prêmio de 8 × 28 p.p.; LR = 129, p bootstrap = 0,002. Em dez/98–jan/99, regime calmo nos juros.
 :::
 
+::: {.fio}
+**Fio ·** Dinâmica: o mercado alternou entre calma e ataque. Ásia e Rússia levaram os juros ao regime de ataque, e o BC defendeu com Selic. → No fim, a defesa mudou de canal.
+:::
+
 ## 3 · No fim, o ataque passou pelas reservas
 
 ::: {.fig}
@@ -73,6 +89,10 @@ Markov-switching: prêmio de 8 × 28 p.p.; LR = 129, p bootstrap = 0,002. Em dez
 
 ::: {.fonte}
 Índice de pressão cambial (Eichengreen-Rose-Wyplosz). Reservas: US$ 70,9 bi (jun/98) → 36,1 bi (jan/99).
+:::
+
+::: {.fio}
+**Fio ·** Depois do acordo com o FMI, os juros saíram do regime de ataque e a pressão passou às reservas. Com a moratória de Minas, o fôlego acabou e o real flutuou. → Que teoria explica isso?
 :::
 
 ## 4 · Duas gerações de modelos, uma crise
@@ -87,6 +107,10 @@ Markov-switching: prêmio de 8 × 28 p.p.; LR = 129, p bootstrap = 0,002. Em dez
 A dívida indexada à Selic é a ponte: liga o custo de defender o câmbio ao fundamento fiscal.
 :::
 
+::: {.fio}
+**Fio ·** Modelos: nenhuma geração basta sozinha. A dívida indexada une as duas: fundamento fiscal (1ª) e custo de defender (2ª). → Como governo e FMI responderam?
+:::
+
 ## 5 · O FMI comprou semanas; a âncora nova resolveu
 
 ::: {.fig}
@@ -95,6 +119,10 @@ A dívida indexada à Selic é a ponte: liga o custo de defender o câmbio ao fu
 
 ::: {.fonte}
 Pacote de ~US$ 41 bi: reservas +8,9 bi em dez/98 e −4,5 bi até 12/01. Depois: flutuação, primário de 3,1% e metas.
+:::
+
+::: {.fio}
+**Fio ·** Resposta: o pacote encheu as reservas, mas elas vazaram em semanas. A estabilidade veio da âncora nova: flutuação, primário e metas de inflação. → Quanto custou o colapso?
 :::
 
 ## 5 · O custo veio pelo balanço, não pela atividade
@@ -107,6 +135,10 @@ Pacote de ~US$ 41 bi: reservas +8,9 bi em dez/98 e −4,5 bi até 12/01. Depois:
 Indústria −7,9 pts e inflação +0,9 p.p. (p = 0,62): nada fora do comum. A dívida federal: +7 p.p. do PIB em um mês.
 :::
 
+::: {.fio}
+**Fio ·** Custos: contra emergentes sem crise, o Brasil não perdeu indústria nem teve inflação fora do comum. O custo foi a dívida saltar com o câmbio. → E se a política tivesse sido outra?
+:::
+
 ## 6 · O primário teria mudado a história; os juros, pouco
 
 ::: {.fig}
@@ -115,6 +147,10 @@ Indústria −7,9 pts e inflação +0,9 p.p. (p = 0,62): nada fora do comum. A d
 
 ::: {.fonte}
 Dívida federal em dez/98: 22,9% observada; 15,8% com o primário de 1999 desde 1996; 22,1% sem as defesas com juros. Equilíbrio parcial.
+:::
+
+::: {.fio}
+**Fio ·** Contrafactual: com o primário de 1999 desde 1996, a dívida seria 16% do PIB, não 23%. Sem as defesas com juros, mudaria pouco. O problema era fiscal. → Conclusão.
 :::
 
 ## O que fica
@@ -126,6 +162,10 @@ Dívida federal em dez/98: 22,9% observada; 15,8% com o primário de 1999 desde 
 
 ::: {.fonte}
 Código, dados e simulador: github.com/vitorwilher/crise-cambial-brasil-1999 · vitorwilher.shinyapps.io/crise-cambial-brasil-1999
+:::
+
+::: {.fio}
+**Fio ·** Resposta à pergunta: o fiscal foi a causa, os juros transmitiram o choque e as reservas adiaram o desfecho.
 :::
 
 # {.fecho}

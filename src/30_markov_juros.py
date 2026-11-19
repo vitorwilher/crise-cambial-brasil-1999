@@ -133,14 +133,14 @@ for _, g in ataque.groupby(blocos.values):
 EVENTOS = {"1997-10-23": "Hong Kong", "1998-08-17": "Rússia",
            "1998-10-04": "Eleição", "1998-11-13": "FMI",
            "1999-01-06": "Minas"}
-fig, axs = am.figura(2, 1, figsize=(9.5, 7), sharex=True)
+fig, axs = am.figura(1, 2, figsize=(13, 5.2), sharex=True)
 ax = axs[0]
 am.eixo(ax)
 d = s.loc[INICIO:FIM]
 ax.plot(d.index, d["y_total"], color=am.NAVY, lw=1.6, label="Selic − Fed funds − deslize")
 ax.plot(d.index, d["y_cambio"], color=am.BLUE, lw=1.3, label="… − EMBI (prêmio cambial)")
 ax.axhline(0, color=am.MUTED, lw=0.8)
-am.subtitulo_eixo(ax, "Prêmio implícito nos juros (p.p. ao ano)")
+am.subtitulo_eixo(ax, "Prêmio implícito nos juros (p.p. a.a.)")
 ax.legend(frameon=False, fontsize=8, loc="upper center")
 ax = axs[1]
 am.eixo(ax)
@@ -163,4 +163,7 @@ am.titulos(fig, "Brasil, 1995–1999: dois regimes nos juros da banda cambial",
            "Markov-switching com 2 regimes, AR(1), semanal, jul/1995 a 08/01/1999")
 am.rodape(fig, "Fonte: BCB/SGS (PTAX 1, Selic 1178, reservas 3546), FRED (DFF), "
           "Ipeadata (EMBI+ JPM366_EMBI366). Elaboração própria.")
+for a in axs:
+    am.eixo_datas(a)
+fig.subplots_adjust(top=0.82, wspace=0.18)
 am.salvar(fig, SAIDAS / "markov_probabilidades.png")
